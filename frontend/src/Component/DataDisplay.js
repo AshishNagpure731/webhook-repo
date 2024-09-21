@@ -33,18 +33,18 @@ const DataDisplay = () => {
             {Data.length > 0 ?
                 (
                     Data.reverse().map((e,i) => (
-                        e.action == 'push' ?
+                        e.action === 'push' ?
                             <div key={i} className="row border mt-4 text-white" style={{ backgroundColor: '#4B7197' }}>
                                 {e.author} pushed to {e.to_branch} on {e.timestamp}
                             </div>
                             :
                             (
-                                e.action == 'pull_request' ? <div key={i} className="row border mt-4 text-white" style={{ backgroundColor: '#4B7197' }}>
+                                e.action === 'pull_request' ? <div key={i} className="row border mt-4 text-white" style={{ backgroundColor: '#4B7197' }}>
                                     {e.author} submitted a pull request from {e.from_branch} to {e.to_branch} on {e.timestamp}
                                 </div>
                                     :
                                     (
-                                        e.action == 'merge' ? <div key={i} className="row border mt-4 text-white" style={{ backgroundColor: '#4B7197' }}>
+                                        e.action === 'merge' ? <div key={i} className="row border mt-4 text-white" style={{ backgroundColor: '#4B7197' }}>
                                             {e.author} merged branch {e.from_branch} to {e.to_branch} on {e.timestamp}
                                         </div> : <></>
                                     )
