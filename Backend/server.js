@@ -27,6 +27,7 @@ app.post('/webhook', async (req, res) => {
     const payload = req.body;
     switch(event){
         case "push":
+            const ref = payload.ref;
         webhookData = {
 	request_id:null,
     	author:payload.pusher.name,
