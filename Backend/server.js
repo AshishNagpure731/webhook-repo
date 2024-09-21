@@ -1,9 +1,10 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors')
 const app = express();
 
 app.use(express.json());
-
+app.use(cors());
 
 const WebHookSchema = new mongoose.Schema({
     request_id: { type: String },
@@ -21,6 +22,15 @@ mongoose.connect("mongodb+srv://ashi:123ban@cluster0.o7ipcjf.mongodb.net/webhook
 })
 
 const Webhook = mongoose.model('Webhook', WebHookSchema);
+app.get("/",async(req, res) => {
+    try {
+        const results = await Webhook.find();
+        res.json(results); 
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
 
 app.post('/webhook', async (req, res) => {
     const event = req.headers['x-github-event'];
@@ -85,6 +95,7 @@ app.post('/webhook', async (req, res) => {
     console.log(`Received ${event} event.`);
     res.status(200).send('Event received');
 });
+
 const port = 8000 || process.env.PORT
 app.listen(port, () => {
     console.log("Connection Successfull")
