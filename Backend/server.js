@@ -25,6 +25,7 @@ const Webhook = mongoose.model('Webhook', WebHookSchema);
 app.post('/webhook', async (req, res) => {
     const event = req.headers['x-github-event'];
     const payload = req.body;
+    var webhookData;
     switch(event){
         case "push":
             const ref = payload.ref;
