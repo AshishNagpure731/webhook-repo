@@ -4,7 +4,7 @@ const DataDisplay = () => {
     const [Data, setData] = useState([])
     const getData = async () => {
         try {
-            let response = await fetch("http://192.168.1.19:8000/", {
+            let response = await fetch("http://192.168.1.19:8000/", { //https://webhook-repo-t1e2.onrender.com"
                 method: "GET",
             });
 
@@ -13,7 +13,7 @@ const DataDisplay = () => {
             }
 
             let data = await response.json();
-            // console.log(data);
+            console.log(data);
             setData(data);
         } catch (error) {
             console.error("Fetch error:", error);
