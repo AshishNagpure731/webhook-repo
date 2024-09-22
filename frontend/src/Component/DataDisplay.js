@@ -4,7 +4,7 @@ const DataDisplay = () => {
     const [Data, setData] = useState([])
     const getData = async () => {
         try {
-            let response = await fetch("http://192.168.1.19:8000/", { //https://webhook-repo-t1e2.onrender.com"
+            let response = await fetch("http://192.168.1.19:8000/", { //https://webhook-repo-t1e2.onrender.com"//m
                 method: "GET",
             });
 
